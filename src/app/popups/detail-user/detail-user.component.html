@@ -1,0 +1,22 @@
+<section>
+  <div class="btn-container">
+    <button (click)="closePopup()"></button>
+  </div>
+  <form [formGroup]="userForm">
+    <mat-form-field>
+      <label class="description-label" for="name">Name</label>
+      <input id="name" matInput formControlName="name">
+    </mat-form-field>
+
+    <hr>
+
+    <mat-form-field>
+      <label class="description-label" for="description">Description</label>
+      <textarea id="description" matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <hr>
+
+  </form>
+  <button mat-button (click)="addUser()">Add user</button>
+</section>
