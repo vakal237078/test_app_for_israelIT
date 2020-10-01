@@ -1,0 +1,16 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 50%;
+
+  .invalid-feedback {
+    div {
+      color: #f11206;
+    }
+  }
+}

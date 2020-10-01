@@ -1,25 +1,26 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../interfaces/user.interface';
-import {UserDataService} from '../services/data-service/user-data.service';
-import {Observable} from 'rxjs';
+import {LoginService} from '../services/login-service/login.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-users-container',
+  selector: 'app-login-container',
   template: `
-    <app-users
-      [users]="this.users$ | async"
-    ></app-users>`
+    <app-login
+      (emitLoginData)="login($event)"
+    ></app-login>`
 })
 
-export class UsersContainer implements OnInit {
-  public users$: Observable<IUser[]>;
+export class LoginContainer implements OnInit {
 
-  constructor(private usersDS: UserDataService) {
+  constructor(private loginS: LoginService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.usersDS.getUsers().subscribe();
-    this.users$ = this.usersDS.users$;
   }
 
+  public login(data) {
+    this.loginS.login(data);
+    this.router.navigate(['/users']).then();
+  }
 }

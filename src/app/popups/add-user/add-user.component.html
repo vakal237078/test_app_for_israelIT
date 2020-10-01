@@ -1,0 +1,26 @@
+<section>
+  <div class="btn-container">
+    <button (click)="closePopup()"></button>
+  </div>
+  <form [formGroup]="userForm">
+    <div *ngIf="submitted && userForm.invalid" class="invalid-feedback">
+      <div>The form must not be empty</div>
+    </div>
+    <mat-form-field>
+      <label class="description-label" for="name">Name</label>
+      <input id="name" matInput formControlName="name">
+    </mat-form-field>
+
+    <hr>
+
+    <mat-form-field>
+      <label class="description-label" for="description">Description</label>
+      <textarea id="description" matInput formControlName="description" rows="10">
+      </textarea>
+    </mat-form-field>
+
+    <hr>
+
+  </form>
+  <button [disabled]="submitted && userForm.invalid" mat-button (click)="addUser()">Add user</button>
+</section>

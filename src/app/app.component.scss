@@ -1,0 +1,19 @@
+::ng-deep {
+  .cdk-global-scrollblock {
+    overflow-y: auto;
+  }
+
+  mat-dialog-container {
+    min-width: 600px;
+  }
+
+  simple-snack-bar.mat-simple-snackbar.ng-star-inserted {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #f11206;
+
+    span {
+      color: #fff;
+    }
+  }
+}

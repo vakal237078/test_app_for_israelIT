@@ -12,11 +12,26 @@
 
     <mat-form-field>
       <label class="description-label" for="description">Description</label>
-      <textarea id="description" matInput formControlName="description"></textarea>
+      <textarea id="description" matInput formControlName="description" rows="10"></textarea>
     </mat-form-field>
 
     <hr>
 
+    <div class="dates">
+      <div>
+        Creation date
+        <p>{{data.createdAt | date: 'dd.MM.yyyy'}}</p>
+      </div>
+
+      <div>
+        Edit date
+        <p>{{data.editedAt | date: 'dd.MM.yyyy'}}</p>
+      </div>
+    </div>
+
+    <hr>
+
   </form>
-  <button mat-button (click)="addUser()">Add user</button>
+  <button mat-button class="delete-btn" (click)="deletedUser()">Delete user</button>
+  <button mat-button (click)="addUser()">Edit user</button>
 </section>

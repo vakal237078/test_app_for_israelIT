@@ -4,16 +4,16 @@ import {UserDataService} from '../../services/data-service/user-data.service';
 
 
 @Component({
-  selector: 'app-detail-user-container',
-  template: '<app-detail-user (deleteUser)="deleteUser($event)" (userEditEmitter)="editUser($event)"></app-detail-user>'
+  selector: 'app-add-user-container',
+  template: '<app-add-user (userCreateEmitter)="createUser($event)" (userEditEmitter)="editUser($event)"></app-add-user>'
 })
-export class DetailUserContainer {
+export class AddUserContainer {
 
   constructor(private userDS: UserDataService) {
   }
 
-  public deleteUser(userId: number) {
-    this.userDS.deleteUser(userId).subscribe();
+  public createUser(user: IUser) {
+    this.userDS.createUser(user).subscribe();
   }
 
   public editUser(user: IUser) {

@@ -26,9 +26,9 @@ button {
   text-align: center;
   font-size: 16px;
 
-&:disabled {
-  background: rgb(194, 197, 204);
-}
+  &:disabled {
+    background: rgb(194, 197, 204);
+  }
 
 }
 
@@ -39,13 +39,13 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  * {
+    outline: none;
+  }
 }
 
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+* {
+  button, img, div {
+  }
 }

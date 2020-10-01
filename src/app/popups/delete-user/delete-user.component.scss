@@ -1,0 +1,27 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+
+  p {
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+div.mat-dialog-actions {
+  justify-content: flex-end;
+
+  button.cancelBtn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px 10px;
+    margin-right: 30px;
+    background: transparent;
+    color: #f11206;
+  }
+}

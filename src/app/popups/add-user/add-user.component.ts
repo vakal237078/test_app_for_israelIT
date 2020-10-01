@@ -4,19 +4,23 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {IUser} from '../../interfaces/user.interface';
 
 @Component({
-  selector: 'app-detail-user',
-  templateUrl: './detail-user.component.html',
-  styleUrls: ['./detail-user.component.scss']
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
 })
-export class DetailUserComponent implements OnInit {
-  @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>(null);
+export class AddUserComponent implements OnInit {
 
+  // @Input() projects: IProject[];
+  // public dailyReport: IDailyReport;
+  @Output() userCreateEmitter: EventEmitter<IUser> = new EventEmitter<IUser>(null);
   @Output() userEditEmitter: EventEmitter<IUser> = new EventEmitter<IUser>(null);
 
   public userForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
+
+  public submitted = false;
 
   constructor(private dialogRef: MatDialogRef<any>,
               @Inject(MAT_DIALOG_DATA) public data?: IUser) {
@@ -30,19 +34,22 @@ export class DetailUserComponent implements OnInit {
   }
 
   public addUser(): void {
-    const user: IUser = this.userForm.getRawValue();
-    if (this.data && this.data.id) {
-      user.id = this.data.id;
-      user.createdAt = this.data.createdAt;
-      user.editedAt = new Date();
-      this.userEditEmitter.emit(user);
+    this.submitted = true;
+    if (this.userForm.valid) {
+      const user: IUser = this.userForm.getRawValue();
+      if (this.data && this.data.id) {
+        user.id = this.data.id;
+        user.createdAt = this.data.createdAt;
+        user.editedAt = new Date();
+        this.userEditEmitter.emit(user);
+      } else {
+        user.id = Number(JSON.parse(window.localStorage.getItem('lastUserId'))) + 1;
+        user.createdAt = new Date();
+        user.editedAt = new Date();
+        this.userCreateEmitter.emit(user);
+      }
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
-  }
-
-  public deletedUser(): void {
-    this.deleteUser.emit(this.data.id);
-    this.dialogRef.close(true);
   }
 
   public closePopup(): void {
